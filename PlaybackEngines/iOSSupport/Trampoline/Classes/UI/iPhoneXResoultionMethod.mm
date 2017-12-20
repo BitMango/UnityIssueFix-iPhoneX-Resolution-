@@ -17,8 +17,13 @@
     NSString* deviceModel = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
     NSLog(@"This Device Model Number : %@", deviceModel);
     if ([deviceModel isEqualToString:@"iPhone10,3"] || [deviceModel isEqualToString:@"iPhone10,6"]) {
-        CGRect tempframe = CGRectMake(0, 68, _uiwindow.bounds.size.width, _uiwindow.bounds.size.height-136);
-        _uiwindow.rootViewController.view.frame = tempframe;
+        if (_uiwindow.bounds.size.width < _uiwindow.bounds.height) {
+            CGRect tempframe = CGRectMake(0, 68, _uiwindow.bounds.size.width, _uiwindow.bounds.size.height-136);
+            _uiwindow.rootViewController.view.frame = tempframe;
+        } else {
+            CGRect tempframe = CGRectMake(30, 0, _uiwindow.bounds.size.width - 60, _uiwindow.bounds.size.height - 30);
+            _uiwindow.rootViewController.view.frame = tempframe;
+        }
     }
 }
 
